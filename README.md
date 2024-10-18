@@ -4,6 +4,6 @@
 ## Team Members
 
 - Purani Daivik Manishkumar
-- Student 2
+- Andrew Guinto
 - Student 3
 - Student 4
