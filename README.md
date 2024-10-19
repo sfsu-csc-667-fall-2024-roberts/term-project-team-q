@@ -6,4 +6,4 @@
 - Purani Daivik Manishkumar
 - Andrew Guinto
 - Lita Hernandez-Gonzalez
-- Student 4
+- Jannelly Hernandez Umanzor
