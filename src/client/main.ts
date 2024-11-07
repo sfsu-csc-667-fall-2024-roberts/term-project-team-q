@@ -1,1 +1,1 @@
-console.log("Hello from bundled files");
+console.log("Hello from main page");

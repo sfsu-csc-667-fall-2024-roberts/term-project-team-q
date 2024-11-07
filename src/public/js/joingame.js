@@ -10,13 +10,13 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/client/main.ts":
-/*!****************************!*\
-  !*** ./src/client/main.ts ***!
-  \****************************/
+/***/ "./src/client/joingame.ts":
+/*!********************************!*\
+  !*** ./src/client/joingame.ts ***!
+  \********************************/
 /***/ (() => {
 
-eval("\nconsole.log(\"Hello from main page\");\n\n\n//# sourceURL=webpack://term-project-team-q/./src/client/main.ts?");
+eval("\nconsole.log(\"Hello from join game page\");\n\n\n//# sourceURL=webpack://term-project-team-q/./src/client/joingame.ts?");
 
 /***/ })
 
@@ -27,7 +27,7 @@ eval("\nconsole.log(\"Hello from main page\");\n\n\n//# sourceURL=webpack://term
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/client/main.ts"]();
+/******/ 	__webpack_modules__["./src/client/joingame.ts"]();
 /******/ 	
 /******/ })()
 ;
