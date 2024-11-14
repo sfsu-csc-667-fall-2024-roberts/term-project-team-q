@@ -35,6 +35,8 @@ import dotenv from "dotenv";
 import express from "express";
 import httpErrors from "http-errors";
 import morgan from "morgan";
+import connectLiveReload from "connect-livereload";
+import livereload from "livereload";
 import * as path from "path";
 import rootRoutes from "./routes/root";
 dotenv.config();
@@ -43,7 +45,20 @@ const PORT = process.env.PORT || 3000;
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(process.cwd(), "src", "public")));
+const staticPath = path.join(process.cwd(), "src", "public");
+app.use(express.static(staticPath));
+
+if (process.env.NODE_ENV === "development") {
+  const reloadServer = livereload.createServer();
+  reloadServer.watch(staticPath);
+  reloadServer.server.once("connection", () => {
+  setTimeout(() => {
+  reloadServer.refresh("/");
+  }, 100);
+  });
+  app.use(connectLiveReload());
+ }
+
 app.use(cookieParser());
 app.set("views", path.join(process.cwd(), "src", "server", "views"));
 app.set("view engine", "ejs");
