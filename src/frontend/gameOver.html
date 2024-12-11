@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over</title>
+    <link rel="stylesheet" href="css/gameoverstyles.css">
+    <script src="gameoverScript.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav class="top-bar">
+        <button class="chat-button" onclick="toggleChat()">Chat</button>
+        <div class="profile-section">
+            <span id="nicknameDisplay">Nickname</span>
+            <img id="profileIconDisplay" src="path/to/default/icon.png" alt="Profile Icon">
+            <button class="profile-settings-button" onclick="toggleProfileSettings()">⋮</button>
+        </div>
+    </nav>
+    <div class="Over-container">
+        <h1>Game Over</h1>
+        <div id="gameOverContent">
+            <p>Winner: <span id="winner"></span></p>
+        </div>
+        <button id="startNewGameButton" onclick="location.href='game.html'">Starting New Game</button>
+        <button onclick="location.href='lobby.html'">Back to Lobby</button>
+    </div>
+    <div id="chatPopup" class="chat-popup" style="display:none;">
+        <h2>Chat</h2>
+        <!-- Chat goes here -->
+        <button onclick="toggleChat()">Close</button>
+    </div>
+
+    <div id="profilePopup" class="profile-popup" style="display:none;">
+        <h2>Profile Settings</h2>
+        <input type="text" id="newNickname" placeholder="Change Nickname">
+        <p>Change Profile Icon:</p>
+        <div id="iconSelection"></div>
+        <button onclick="saveProfileSettings()">Save</button>
+        <button onclick="toggleProfileSettings()">Close</button>
+    </div>
+</body>
+</html>
+
