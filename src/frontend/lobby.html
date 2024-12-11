@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lobby</title>
+    <link rel="stylesheet" href="css/lobbystyles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <nav class="top-bar">
+        <button class="chat-button" onclick="toggleChat()">Chat</button>
+        <div class="profile-section">
+            <span id="nicknameDisplay">Nickname</span>
+            <img id="profileIconDisplay" src="path/to/default/icon.png" alt="Profile Icon">
+            <button class="profile-settings-button" onclick="toggleProfileSettings()">⋮</button>
+        </div>
+    </nav>
+    <div class="lobby-container">
+        <h1>Lobby</h1>
+        <div id="loggedInContent" style="display:none;">
+            <div class="middle-buttons">
+                <button onclick="location.href='createGame.html'">Create Game</button>
+                <button onclick="location.href='joinGame.html'">Join Game</button>
+                <button onclick="winPatterns()">Win Patterns</button>
+            </div>
+            <button onclick="logout()">Logout</button>
+        </div>
+        <div id="guestContent" style="display:none;">
+            <p>Welcome, Guest!</p>
+            <button onclick="joinGame()">Join</button>
+            <button onclick="winPatterns()">Win Patterns</button>
+            <button onclick="startGame()">Start Game as Guest</button>
+        </div>
+    </div>
+    <div id="chatPopup" class="chat-popup" style="display:none;">
+        <h2>Chat</h2>
+        <!-- Chat goes here -->
+        <button onclick="toggleChat()">Close</button>
+    </div>
+    <div id="profilePopup" class="profile-popup" style="display:none;">
+        <h2>Profile Settings</h2>
+        <input type="text" id="newNickname" placeholder="Change Nickname">
+        <p>Change Profile Icon:</p>
+        <div id="iconSelection"></div>
+        <button onclick="saveProfileSettings()">Save</button>
+        <button onclick="toggleProfileSettings()">Close</button>
+    </div>
+</body>
+</html>
