@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/loginstyles.css">
+    <script>
+        function handleLogin(event) {
+            event.preventDefault();
+            localStorage.setItem('isLoggedIn', 'true');
+            window.location.href = 'home.html';
+        }
+    </script>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form onsubmit="handleLogin(event)">
+            <div class="email-container">
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" required>
+            </div>
+            <div class="password-container">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                <a href="forgot-password.html">Forgot password?</a>
+            </div>
+            <button type="submit">Login</button>
+
+            <div class="register-container">
+                <p>Don't have an account? <a href="register.html">Create An Account</a></p>
+
+            </div>
+        </form>
+    </div>
+</body>
+</html>
