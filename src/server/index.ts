@@ -38,7 +38,9 @@ import morgan from "morgan";
 import connectLiveReload from "connect-livereload";
 import livereload from "livereload";
 import * as path from "path";
-import rootRoutes from "./routes/root";
+import * as routes from "./routes/root";
+import * as configuration from "./config/config";
+
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -47,22 +49,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const staticPath = path.join(process.cwd(), "src", "public");
 app.use(express.static(staticPath));
-
-if (process.env.NODE_ENV === "development") {
-  const reloadServer = livereload.createServer();
-  reloadServer.watch(staticPath);
-  reloadServer.server.once("connection", () => {
-  setTimeout(() => {
-  reloadServer.refresh("/");
-  }, 100);
-  });
-  app.use(connectLiveReload());
- }
-
+configuration.configureLiveReload(app, staticPath);
 app.use(cookieParser());
 app.set("views", path.join(process.cwd(), "src", "server", "views"));
 app.set("view engine", "ejs");
-app.use("/", rootRoutes);
+
+app.use("/", routes.home);
+app.use("/lobby", routes.lobby);
+app.use("/auth", routes.auth);
+app.use("/games", routes.games);
+app.use("/test", routes.test);
+
 app.use((_request, _response, next) => {
   next(httpErrors(404));
 });
