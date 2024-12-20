@@ -1,6 +1,15 @@
-const pgp = require("pg-promise")();
-const connection = pgp(process.env.DATABASE_URL);
+import pgp from "pg-promise";
+import dotenv from "dotenv";
 
-console.log("Connection to the database is successful.");
+dotenv.config();
+const pgpInstance = pgp();
+
+const connection = pgpInstance({
+  host: "localhost",
+  port: 5432,
+  database: "CSC667Database",
+  user: "postgres",
+  password: "12345",
+});
 
 export default connection;
