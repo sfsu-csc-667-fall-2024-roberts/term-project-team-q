@@ -7,8 +7,8 @@ type User = {
   id: number;
   username: string;
   email: string;
-  gravatar: string;
 };
+
 const register = async (
   username: string,
   email: string,
@@ -36,3 +36,4 @@ const findByEmail = (email: string): Promise<UserWithPassword> => {
 };
 
 export default { register, login, findByEmail };
+export type { User, UserWithPassword };
