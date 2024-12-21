@@ -1,0 +1,26 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Debug with nodemon",
+        "type": "node",
+        "request": "launch",
+        "runtimeExecutable": "nodemon",
+        "runtimeArgs": [
+        //   "--inspect", // Enables debugging
+          "--exec",
+          "ts-node",
+          "-r",
+          "tsconfig-paths/register", // Optional, if you are using path aliases
+          "${workspaceFolder}/src/server/index.ts" // Your entry point
+        ],
+        "protocol": "inspector",
+        "skipFiles": ["<node_internals>/**"],
+        "sourceMaps": true,
+        "outFiles": [
+          "${workspaceFolder}/dist/**/*.js" // Adjust this if your compiled JavaScript output is elsewhere
+        ]
+      }
+    ]
+  }
+  
