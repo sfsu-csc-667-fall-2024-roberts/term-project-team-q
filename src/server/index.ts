@@ -35,8 +35,7 @@ import dotenv from "dotenv";
 import express from "express";
 import httpErrors from "http-errors";
 import morgan from "morgan";
-import connectLiveReload from "connect-livereload";
-import livereload from "livereload";
+import authenticationMiddleware from "./middleware/authentication";
 import * as path from "path";
 import * as routes from "./routes/root";
 import * as configuration from "./config/config";
@@ -50,14 +49,18 @@ app.use(express.urlencoded({ extended: false }));
 const staticPath = path.join(process.cwd(), "src", "public");
 app.use(express.static(staticPath));
 configuration.configureLiveReload(app, staticPath);
+
+configuration.configureSession(app);
+
+
 app.use(cookieParser());
 app.set("views", path.join(process.cwd(), "src", "server", "views"));
 app.set("view engine", "ejs");
 
 app.use("/", routes.home);
-app.use("/lobby", routes.lobby);
+app.use("/lobby", authenticationMiddleware, routes.lobby);
 app.use("/auth", routes.auth);
-app.use("/games", routes.games);
+app.use("/games", authenticationMiddleware, routes.games);
 app.use("/test", routes.test);
 
 app.use((_request, _response, next) => {
