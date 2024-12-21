@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lobby</title>
     <link rel="stylesheet" href="css/lobbystyles.css">
-    <script src="script.js" defer></script>
+    <link rel = "stylesheet" href = "css/navStyles.css">
+    <script src="scripts/script.js" defer></script>
+    <script src="scripts/main.js" defer></script>
 </head>
 <body>
     <nav class="top-bar">
@@ -22,14 +24,11 @@
             <div class="middle-buttons">
                 <button onclick="location.href='createGame.html'">Create Game</button>
                 <button onclick="location.href='joinGame.html'">Join Game</button>
-                <button onclick="winPatterns()">Win Patterns</button>
             </div>
             <button onclick="logout()">Logout</button>
         </div>
         <div id="guestContent" style="display:none;">
             <p>Welcome, Guest!</p>
-            <button onclick="joinGame()">Join</button>
-            <button onclick="winPatterns()">Win Patterns</button>
             <button onclick="startGame()">Start Game as Guest</button>
         </div>
     </div>

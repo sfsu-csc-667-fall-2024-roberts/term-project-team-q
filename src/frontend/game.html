@@ -3,11 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
-    <link rel="stylesheet" href="css/lobbystyles.css">
-    <script src="script.js" defer></script>
+    <title>Bingo Game</title>
+    <link rel="stylesheet" href="css/navStyles.css">
+    <link rel="stylesheet" href="css/gameStyles.css">
+    <script src="scripts/gameScript.js" defer></script>
+    <script src="scripts/main.js" defer></script>
 </head>
 <body>
-    <h1>Game</h1>
+    <nav class="top-bar">
+        <button class="chat-button" onclick="toggleChat()">Chat</button>
+        <div class="profile-section">
+            <span id="nicknameDisplay">Nickname</span>
+            <img id="profileIconDisplay" src="path/to/default/icon.png" alt="Profile Icon">
+            <button class="profile-settings-button" onclick="toggleProfileSettings()">⋮</button>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="game-wrapper">
+            <div class="number-call">
+                <h2 class="num">Number Called: <span id="calledNumber">-</span></h2>
+            </div>
+            <div class="game-container">
+                <h1>Bingo Game</h1>
+                <div class="bingo-board" id="bingoBoard"></div>
+                <button onclick="checkBingo()">Bingo!</button>
+            </div>
+        </div>
+        <div id="chatPopup" class="chat-popup" style="display:none;">
+            <h2>Chat</h2>
+            <!-- Chat content goes here -->
+            <button onclick="toggleChat()">Close</button>
+        </div>
+        <div id="profilePopup" class="profile-popup" style="display:none;">
+            <h2>Profile Settings</h2>
+            <input type="text" id="newNickname" placeholder="Change Nickname">
+            <p>Change Profile Icon:</p>
+            <div id="iconSelection"></div>
+            <button onclick="saveProfileSettings()">Save</button>
+            <button onclick="toggleProfileSettings()">Close</button>
+        </div>
+    </div>
 </body>
+</html>
 </html>

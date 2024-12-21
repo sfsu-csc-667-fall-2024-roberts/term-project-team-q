@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Game</title>
     <link rel="stylesheet" href="css/creategame.css">
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="css/navStyles.css">
+    <script src="scripts/script.js" defer></script>
+    <script src="scripts/main.js" defer></script>
 </head>
 <body>
     <div class="create-game-container">
@@ -18,10 +20,6 @@
             <div class="form-group">
                 <label for="numPlayers">Number of Players:</label>
                 <input type="number" id="numPlayers" name="numPlayers" min="1" max="6" required>
-            </div>
-            <div class="form-group">
-                <label for="winPatterns">Edit Win Patterns:</label>
-                <textarea id="winPatterns" name="winPatterns" rows="4" required></textarea>
             </div>
             <div class="form-buttons">
                 <button type="submit">Create Game</button>
