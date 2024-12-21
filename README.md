@@ -2,8 +2,9 @@
 # CSC 667/867 Fall 2024 Term Project
 
 ## Team Members
-
 - Purani Daivik Manishkumar
+  
+Not Present in Project
 - Andrew Guinto
 - Lita Hernandez-Gonzalez
 - Jannelly Hernandez Umanzor
