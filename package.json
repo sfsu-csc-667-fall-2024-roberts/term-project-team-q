@@ -43,11 +43,8 @@
     "@types/morgan": "^1.9.9",
     "@types/node": "^22.8.1",
     "@types/webpack": "^5.28.5",
-<<<<<<< HEAD
-=======
     "concurrently": "^9.1.0",
     "connect-livereload": "^0.6.1",
->>>>>>> c4a987fd94215f2899ae8fb4492608e857f2d02c
     "husky": "^9.1.6",
     "lint-staged": "^15.2.10",
     "livereload": "^0.9.3",

@@ -1,6 +1,6 @@
 import express from "express";
 const router = express.Router();
-import { createGame, joinGame, leaveGame } from "../db/games";
+import { createGame, joinGame, leaveGame, getGameState } from "../db/games";
 
 
 router.get("/creategame", (request, response) => {
@@ -29,5 +29,10 @@ router.get("/creategame", (request, response) => {
   router.get("/game", (request, response) => {
     response.render("game", { title: "Game Page" });
   });
+
+
+  router.get("/gamestate", (request, response) => {
+    response.send(getGameState(request, response));
+  })
 
 export default router;

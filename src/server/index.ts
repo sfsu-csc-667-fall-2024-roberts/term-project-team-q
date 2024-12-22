@@ -33,9 +33,12 @@
 import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import express from "express";
+import http from "http";
 import httpErrors from "http-errors";
 import morgan from "morgan";
+import { Server } from "socket.io";
 import authenticationMiddleware from "./middleware/authentication";
+
 import * as path from "path";
 import * as routes from "./routes/root";
 import * as configuration from "./config/config";
@@ -51,6 +54,27 @@ app.use(express.static(staticPath));
 configuration.configureLiveReload(app, staticPath);
 
 configuration.configureSession(app);
+
+// Create HTTP server
+const httpServer = http.createServer(app);
+
+// Initialize Socket.IO server
+const io = new Server(httpServer);
+app.set("io", io); // Make `io` accessible globally for routes and controllers
+
+io.engine.use(authenticationMiddleware); // Share session middleware with Socket.IO
+
+io.on("connection", (socket) => {
+  const gameId = socket.handshake.query.id;
+
+  if (!gameId) {
+    console.error("Game ID not provided in handshake query.");
+    return;
+  }
+
+  console.log(`Socket connected to Game ID: ${gameId}`);
+  socket.join(gameId.toString());
+});
 
 
 app.use(cookieParser());

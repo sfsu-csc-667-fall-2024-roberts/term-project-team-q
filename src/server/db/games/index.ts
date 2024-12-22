@@ -1,18 +1,35 @@
 import { Request, Response } from "express";
 import db from "../connection";
-import { CREATE_GAME, SEARCH_GAME } from "./sql";
+import { CREATE_GAME, SEARCH_GAME, GET_GAME_STATE } from "./sql";
 
 // Create a new game
 export const createGame = async (req: Request, res: Response) => {
-  // const { gameName } = req.body;
+  const { gameName } = req.body;
 
   const userId = req?.session?.user?.id;
 
   try {
+    // create new game state
+    const gameState = {
+      status: "waiting",
+      players: [],
+      current_turn: null,
+      drawn_numbers: [],
+      chat_log: [],
+      created_at: new Date().toISOString(),
+      updated_at: new Date().toISOString(),
+    };
+
     // Insert a new game into the database
-    const result = await db.query(CREATE_GAME, [userId, "waiting"]);
+    const result = await db.query(CREATE_GAME, [
+      gameName,
+      userId,
+      gameState,
+      "waiting",
+    ]);
 
     const newGame = result.rows[0];
+
     res
       .status(201)
       .json({ message: "Game created successfully", game: newGame });
@@ -48,7 +65,8 @@ export const joinGame = async (req: Request, res: Response) => {
       [gameId, userId]
     );
     if (playerResult.rows.length > 0) {
-      return res.status(400).json({ error: "User is already in the game" });
+      return res.redirect("/game/" + gameId);
+      // redirect to game page
     }
 
     // Add the user to the game
@@ -63,6 +81,8 @@ export const joinGame = async (req: Request, res: Response) => {
       "INSERT INTO bingo_cards (user_id, game_id, card) VALUES ($1, $2, $3)",
       [userId, gameId, card]
     );
+
+    game.players = [...game.players, userId];
 
     res.status(200).json({ message: "Joined game successfully", game });
   } catch (error) {
@@ -143,6 +163,25 @@ function generateBingoCard(userId: number, gameId: number) {
 
 function randomInt(min: number, max: number) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+export const getGameState = async (req: Request, res: Response) => {
+  const { gameId } = req.params;
+
+  try {
+    const gameState = await db.query(GET_GAME_STATE, [
+      gameId,
+    ]);
+
+    return res.status(200).json({ game: gameState.rows[0] });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Unable to get game state" });
+  }
+};
+
+function updateGameState(gameId: number, newState: any) {
+  // update the game state in the database
 }
 
 // const joingame = async (req: Request, res: Response) => {
